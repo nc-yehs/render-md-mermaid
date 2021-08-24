@@ -50,7 +50,7 @@ echo "$mermaid_css" >> .render-md-mermaid.css
 
 mermaid_file=""
 IFS=$'\n'
-for line in $(perl -0777 -ne 'while(m/!\[.*?\]\(([^\)]+)\)\n+<details>([\s\S]*?)```mermaid\n([\s\S]*?)\n```/g){print "$1\n$3\n";} ' "$markdown_input")
+for line in $(perl -0777 -ne 'while(m/!\[.*?\]\(([^\)]+)\)\n+```mermaid\n([\s\S]*?)\n```/g){print "$1\n$2\n";} ' "$markdown_input")
 do
     if [[ $line =~ $image_re ]]; then
         mermaid_file="$line.mermaid"
