@@ -56,6 +56,9 @@ do
         mermaid_file="$line.mermaid"
         if [[ ! "$mermaid_file" =~ ^.*/.* ]]; then
             mermaid_file="./$mermaid_file"
+        elif [[ "$mermaid_file" =~ ^/ ]]; then
+            # Removing leading /
+            mermaid_file="${mermaid_file:1}"
         fi
         mkdir -p -- "${mermaid_file%/*}"
     else
